@@ -5,3 +5,4 @@ FECkeypair.pem
 coverage/
 SEGAkeypair.pem
 .env
+product.csv
