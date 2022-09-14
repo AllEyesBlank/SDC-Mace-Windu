@@ -8,8 +8,12 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "csv": "^6.2.0",
+    "csv-parse": "^5.3.0",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "nodemon": "^2.0.19",
+    "postgres": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-image-magnify": "^2.7.4"
@@ -45,6 +49,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
     "test": "jest",
-    "server": "node ./server"
+    "server": "node ./server",
+    "etl": "node ./ETL.js"
   }
 }

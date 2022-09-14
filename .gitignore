@@ -1,5 +1,7 @@
+public/bundle.js
 node_modules/
 src/config/config.js
 FECkeypair.pem
 coverage/
 SEGAkeypair.pem
+.env
