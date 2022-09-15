@@ -50,6 +50,11 @@
     "dev": "webpack serve --open",
     "test": "jest",
     "server": "node ./server",
-    "etl": "node ./ETL.js"
+    "etl": "node ./ETL.js",
+    "etl2": "node ./ETL2.js",
+    "etl3": "node ./ETL3.js",
+    "etl4": "node ./ETL4.js",
+    "etl5": "node ./ETL5.js",
+    "etl6": "node ./ETL6.js"
   }
 }

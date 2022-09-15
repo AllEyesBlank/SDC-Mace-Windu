@@ -6,3 +6,8 @@ coverage/
 SEGAkeypair.pem
 .env
 product.csv
+features.csv
+styles.csv
+photos.csv
+skus.csv
+related.csv

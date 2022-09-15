@@ -14,6 +14,7 @@ CREATE TABLE products (
 CREATE TABLE styles (
   product_id INT,
   style_id INT UNIQUE,
+  style_name TEXT,
   original_price INT,
   sale_price INT,
   "default" BOOLEAN,
