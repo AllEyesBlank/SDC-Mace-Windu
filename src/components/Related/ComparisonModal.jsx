@@ -13,8 +13,7 @@ class ComparisonModal extends React.Component {
   }
   componentDidUpdate() {
     if (this.props.show !== this.state.showing) {
-      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${this.props.comparedProduct.id}`,
-      {headers: {'Authorization': `${API_KEY}`}, params: { product_id: this.props.comparedProduct.id}})
+      return axios.get(`/products/${this.props.comparedProduct.id}`)
         .then((data) => {
           var concattedList = this.props.mainInfo.concat(data.data.features)
           for (let i = 0; i < concattedList.length; i++) {

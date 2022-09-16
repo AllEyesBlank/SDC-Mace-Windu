@@ -21,17 +21,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/', {
-      headers: {'Authorization': `${API_KEY}`},
-      params: {
-        count: 5,
-        page: 1
-      }})
+    axios.get('/products')
     .then(res => {
-      this.setState({ products: res.data, product: res.data[2] })
+      console.log('res: ', res)
+      this.setState({ product: res.data[0] })
       return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta', {
         headers: {'Authorization': `${API_KEY}`},
-        params: {product_id: res.data[2].id}
+        params: {product_id: res.data.id}
       })
     })
     .then(res => {
@@ -44,7 +40,8 @@ class App extends React.Component {
 
 
   selectProduct(product) {
-    this.setState({ 'product': product })
+    console.log(product);
+    this.setState({ 'product': product[0] })
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta', {
       headers: {'Authorization': `${API_KEY}`},
       params: {product_id: product.id}

@@ -129,14 +129,12 @@ class Overview extends React.Component {
   //WHEN I MOUNT:
   componentDidUpdate() {
     if (this.props.product.id !== this.state.currentProduct) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${this.props.product.id}`,
-      {headers: {'Authorization': `${API_KEY}`}, params: { product_id: this.props.product.id}})
+      axios.get(`/products/${this.props.product.id}`)
         .then((productInfo) => {
-          this.setState({ 'productInfo': productInfo.data.features, 'currentProduct': this.props.product.id })
+          this.setState({ 'productInfo': productInfo.data, 'currentProduct': this.props.product.id })
         })
         .then(() => {
-          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${this.props.product.id}/styles`, {headers: {'Authorization': `${API_KEY}`},
-          params: { product_id: this.props.product.id}})
+          return axios.get(`/products/${this.props.product.id}/styles`)
         })
         .then((productStyles) => {
           let sizes = [];
@@ -230,7 +228,7 @@ class Overview extends React.Component {
           </div>
           <section className="product-info">
             <ProductInfo rating={this.state.rating} product={this.props.product} style={this.state.currentStyle} onSale={this.state.onSale} scroll={this.props.scroll}/>
-            <StyleSelector style={this.state.currentStyle.name} styles={this.state.productStyles} onClick={this.styleSelect.bind(this)}/>
+            <StyleSelector style={this.state.currentStyle.style_name} styles={this.state.productStyles} onClick={this.styleSelect.bind(this)}/>
             <OverviewSelectors pickSize={this.pickSize.bind(this)} sizes={this.state.sizes} currentSize={this.state.currentSize} quantities={this.state.quantities} addToCart={this.addToCart.bind(this)} pickQuantity={this.pickQuantity.bind(this)}/>
             <span className="social-links">
             <i class="fa-brands fa-facebook"></i><i class="fa-brands fa-twitter"></i><i class="fa-brands fa-pinterest"></i></span>

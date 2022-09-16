@@ -110,7 +110,7 @@ class RelatedProduct extends React.Component {
                 height="150"></img>
               <RelatedCarousel show={this.state.relatedShow} photos={this.props.styles.data.results[0].photos} index={this.state.photoIndex - 1} changePhoto={this.changePhoto.bind(this)} />
               <div className="related-name">
-                {this.props.product.name}
+                {this.props.product[0].name}
               </div>
               <div className="related-price">
                 ${this.props.styles.data.results[0].original_price}

@@ -5,7 +5,7 @@ const StyleSelector = ({style, styles, onClick}) => {
     <div className="style-title">
       Style: {style}
     <div className="styles-holder"> {styles.map((styl) => {
-      if (styl.name === style) {
+      if (styl.style_name === style) {
         return (
           <img className="style-bubble selected"
           src={styl.photos[0].thumbnail_url}

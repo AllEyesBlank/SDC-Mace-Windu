@@ -25,8 +25,7 @@ class Related extends React.Component {
       return;
     }
     if (this.state.productId !== this.props.product.id) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${this.props.product.id}/related`,
-        { headers: { 'Authorization': `${API_KEY}` }, params: { 'product_id': this.props.product.id } })
+      axios.get(`products/${this.props.product.id}/related`)
         .then((data) => {
           this.setState({ 'productId': this.props.product.id, 'relatedIds': data.data, })
           // console.log(data)
@@ -35,8 +34,7 @@ class Related extends React.Component {
         .then((ids) => {
           var promiseIds = [];
           for (let i = 0; i < ids.length; i++) {
-            promiseIds.push(axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${ids[i]}`,
-              { headers: { 'Authorization': `${API_KEY}` }, params: { 'product_id': ids[i] } }))
+            promiseIds.push(axios.get(`products/${ids[i]}`))
           }
           return Promise.all(promiseIds)
         })
@@ -56,10 +54,7 @@ class Related extends React.Component {
         .then((ids) => {
           var promiseIds = [];
           for (let i = 0; i < ids.length; i++) {
-            promiseIds.push(axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${ids[i].data.id}/styles`, {
-              headers: { 'Authorization': `${API_KEY}` },
-              params: { product_id: ids[i].data.id }
-            }))
+            promiseIds.push(axios.get(`/products/${ids[i].data[0].product_id}/styles`))
           }
           return Promise.all(promiseIds)
         })
@@ -71,7 +66,7 @@ class Related extends React.Component {
           for (let i = 0; i < this.state.relatedProducts.length; i++) {
             promiseIds.push(axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta`, {
               headers: { 'Authorization': `${API_KEY}` },
-              params: { product_id: this.state.relatedProducts[i].data.id }
+              params: { product_id: this.state.relatedProducts[i].data[0].id }
             }))
           }
           return Promise.all(promiseIds);
