@@ -18,7 +18,7 @@ exports.getSkus = (id) => {
 }
 
 exports.getPhotos = (id) => {
-  return sql`SELECT * FROM photos WHERE style_id=${id}`
+  return sql`SELECT photo_url AS url, thumbnail AS thumbnail_url FROM photos WHERE style_id=${id}`
 }
 
 exports.getRelated = (id) => {

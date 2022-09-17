@@ -1,7 +1,7 @@
 const Products = require('../models/Products.js');
 
 exports.getBeginning = (req, res) => {
-  Products.getOne(3)
+  Products.getOne(66642)
     .then((data) => {
       res.status(200).send(data);
     });
@@ -37,21 +37,25 @@ exports.getStyle = (id, res) => {
 exports.getFeatures = (id, res) => {
   Products.getFeatures(id)
     .then((data) => {
-      console.log('features data: ', data);
-      res.status(200).send(data);
+      var result = data[0];
+      result['features'] = [];
+      for (let i = 0; i < data.length; i++) {
+        var featureObj = {};
+        featureObj['feature'] = data[i].feature;
+        featureObj['value'] = data[i].value;
+        result['features'].push(featureObj);
+      }
+      res.status(200).send(result);
     })
 }
 
 exports.getRelated = (id, res) => {
-  console.log('id related: ', id);
   Products.getRelated(id)
     .then((data) => {
       let result = []
-      console.log('data: ', data)
       for (let i = 0; i < data.length; i++) {
         result.push(data[i].related_id);
       }
-      console.log('result: ', result)
       res.status(200).send(result);
     })
 }

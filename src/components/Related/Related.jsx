@@ -28,7 +28,6 @@ class Related extends React.Component {
       axios.get(`products/${this.props.product.id}/related`)
         .then((data) => {
           this.setState({ 'productId': this.props.product.id, 'relatedIds': data.data, })
-          // console.log(data)
           return (data.data)
         })
         .then((ids) => {
@@ -39,7 +38,6 @@ class Related extends React.Component {
           return Promise.all(promiseIds)
         })
         .then((data) => {
-          // console.log(data)
           for (let i = 0; i < data.length; i++) {
             var currentId = data[i].data.id
             for (let j = i + 1; j < data.length; j++) {
@@ -54,7 +52,7 @@ class Related extends React.Component {
         .then((ids) => {
           var promiseIds = [];
           for (let i = 0; i < ids.length; i++) {
-            promiseIds.push(axios.get(`/products/${ids[i].data[0].product_id}/styles`))
+            promiseIds.push(axios.get(`/products/${ids[i].data.id}/styles`))
           }
           return Promise.all(promiseIds)
         })
@@ -66,7 +64,7 @@ class Related extends React.Component {
           for (let i = 0; i < this.state.relatedProducts.length; i++) {
             promiseIds.push(axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta`, {
               headers: { 'Authorization': `${API_KEY}` },
-              params: { product_id: this.state.relatedProducts[i].data[0].id }
+              params: { product_id: this.state.relatedProducts[i].data.id }
             }))
           }
           return Promise.all(promiseIds);
@@ -87,6 +85,7 @@ class Related extends React.Component {
         })
     }
   }
+
 
   addMainToFit() {
     for (let j = 0; j < this.state.myOutfit.length; j++) {
@@ -141,4 +140,5 @@ class Related extends React.Component {
     }
   }
 }
+
 export default Related;

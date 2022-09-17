@@ -131,7 +131,8 @@ class Overview extends React.Component {
     if (this.props.product.id !== this.state.currentProduct) {
       axios.get(`/products/${this.props.product.id}`)
         .then((productInfo) => {
-          this.setState({ 'productInfo': productInfo.data, 'currentProduct': this.props.product.id })
+          console.log(productInfo);
+          this.setState({ 'productInfo': productInfo.data.features, 'currentProduct': this.props.product.id })
         })
         .then(() => {
           return axios.get(`/products/${this.props.product.id}/styles`)
@@ -171,7 +172,6 @@ class Overview extends React.Component {
     }
     else for (var key in this.state.currentStyle.skus) {
       if (this.state.currentStyle.skus[key].size === this.state.currentSize) {
-        console.log('key: ', key )
         currentSku = key;
       }
     }

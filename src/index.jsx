@@ -24,7 +24,7 @@ class App extends React.Component {
     axios.get('/products')
     .then(res => {
       console.log('res: ', res)
-      this.setState({ product: res.data[0] })
+      this.setState({ product: res.data })
       return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta', {
         headers: {'Authorization': `${API_KEY}`},
         params: {product_id: res.data.id}
@@ -40,8 +40,7 @@ class App extends React.Component {
 
 
   selectProduct(product) {
-    console.log(product);
-    this.setState({ 'product': product[0] })
+    this.setState({ 'product': product })
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta', {
       headers: {'Authorization': `${API_KEY}`},
       params: {product_id: product.id}
