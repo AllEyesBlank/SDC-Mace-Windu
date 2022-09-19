@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('./public'))
 
 app.get('/products', (req, res) => {
-  productCtrl.getFeatures(66642, res);
+  productCtrl.getFeatures((Math.floor(100000 * Math.random())), res);
 })
 
 app.get('/products/:productid', (req, res) => {
