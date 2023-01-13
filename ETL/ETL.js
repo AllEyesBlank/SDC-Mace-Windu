@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csvparse = require('csv-parse');
 const parse = csvparse.parse;
-const sql = require('./server/db.js')
+const sql = require('../server/db.js')
 
 const processFile = async () => {
   const records = [];
