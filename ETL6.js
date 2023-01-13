@@ -9,10 +9,8 @@ const processFile = async () => {
     .createReadStream(`./related.csv`)
     .pipe(parse({
       skip_records_with_error: true
-    // CSV options if any
     }));
   for await (const record of parser) {
-    // Work with each record
     records.push(record);
   }
   return records;

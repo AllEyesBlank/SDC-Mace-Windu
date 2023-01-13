@@ -8,10 +8,8 @@ const processFile = async () => {
   const parser = fs
     .createReadStream(`./styles.csv`)
     .pipe(parse({
-    // CSV options if any
     }));
   for await (const record of parser) {
-    // Work with each record
     records.push(record);
   }
   return records;

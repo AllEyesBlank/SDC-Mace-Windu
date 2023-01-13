@@ -30,6 +30,56 @@ app.get('/products/:productid/related', (req, res) => {
   productCtrl.getRelated(id, res)
 })
 
+//REVIEWS//
+
+app.get('/reviews/:productID', (req, res) => {
+  let selectedProduct = req.params;
+  Rar.getReviews(selectedProduct)
+    .then((results) => res.status(200).send(results.rows[0].json_build_object)) //
+    .catch((error) => res.send(error))
+});
+
+app.get('/sortReviews/:productID/:sortType', (req, res) => {
+
+  let selectedProduct = req.params;
+  Rar.getSortedReviews(selectedProduct)
+    .then((reviews) => res.status(200).send(reviews))
+    .catch((error) => res.end(error));
+});
+
+app.get('/reviews/meta/:productID', (req, res) => {
+
+  let selectedProduct = req.params;
+  Rar.getMeta(selectedProduct)
+    .then((metadata) => res.status(200).send(metadata.rows))
+    .catch((error) => res.send(error));
+});
+
+app.post('/addReview', (req, res) => {
+
+  let newReview = req.body;
+  Rar.addNewReview(newReview)
+    .then((results) => res.status(201).send('Review Added'))
+    .catch((error) => res.send(error));
+});
+
+app.put(`/reviews/helpful`, (req, res) => {
+
+  let productToPromote = req.body;
+  Rar.logHelpfulReview(productToPromote)
+    .then((results) => console.log('DB sent back incremented helpful counter in this format:', results))
+    .catch((error) => console.log(error));
+});
+
+app.put('/reviews/report', (req, res) => {
+
+  let productToReport = req.body;
+  Rar.reportReview(productToReport)
+    .then((results) => console.log('DB sent back reported review confirmation in this format:', results))
+    .catch((error) => console.log(error));
+});
+
+
 const PORT = 8080;
 
 app.listen(PORT);
