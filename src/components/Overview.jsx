@@ -126,12 +126,10 @@ class Overview extends React.Component {
     }
   }
 
-  //WHEN I MOUNT:
   componentDidUpdate() {
     if (this.props.product.id !== this.state.currentProduct) {
       axios.get(`/products/${this.props.product.id}`)
         .then((productInfo) => {
-          console.log(productInfo);
           this.setState({ 'productInfo': productInfo.data.features, 'currentProduct': this.props.product.id })
         })
         .then(() => {
