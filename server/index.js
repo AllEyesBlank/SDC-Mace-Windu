@@ -3,6 +3,8 @@ const app = express();
 const sql = require('./db.js')
 var cors = require('cors');
 const productCtrl = require('./controllers/products.js');
+const Rar = require('./controllers/rarController.js');
+const Questions = require('./models/Questions.js');
 
 app.use(cors());
 app.use(express.urlencoded({

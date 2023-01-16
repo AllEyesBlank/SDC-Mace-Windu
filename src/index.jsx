@@ -23,7 +23,6 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/products')
     .then(res => {
-      console.log('res: ', res)
       this.setState({ product: res.data })
       return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/meta', {
         headers: {'Authorization': `${API_KEY}`},
